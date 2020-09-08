@@ -2,7 +2,7 @@ import io.vertx.core.AbstractVerticle;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 
-public class ServerHttp extends AbstractVerticle {
+public class ServerVerticle extends AbstractVerticle {
     @Override
     public void start(){
         Router router = Router.router(vertx);

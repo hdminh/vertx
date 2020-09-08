@@ -6,12 +6,9 @@ import io.vertx.ext.web.client.HttpResponse;
 import io.vertx.ext.web.client.WebClient;
 import io.vertx.ext.web.codec.BodyCodec;
 
-public class HelloVerticle extends AbstractVerticle {
+public class ReceiverVerticle extends AbstractVerticle {
     @Override
     public void start(){
-        Router router = Router.router(vertx);
-
-        vertx.createHttpServer().requestHandler(router).listen(8080);
 
         vertx.eventBus().consumer("hello.vertx", msg ->{
             String msgBody = msg.body().toString();
@@ -25,10 +22,10 @@ public class HelloVerticle extends AbstractVerticle {
 
             request.send(asyncResult -> {
                 if (asyncResult.succeeded()) {
-                    promise.complete(asyncResult.result().toString());
                     HttpResponse<String> response = asyncResult.result();
                     System.out.println(response.toString() + " from C");
-                    msg.reply("msg from C: " + response.toString());
+                    msg.reply("msg from C: " + response.body());
+                    promise.complete(asyncResult.result().toString());
                 }
                 else {
                     promise.fail(asyncResult.cause());
