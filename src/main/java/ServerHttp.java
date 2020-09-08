@@ -12,6 +12,7 @@ public class ServerHttp extends AbstractVerticle {
 
     private void helloName(RoutingContext ctx) {
         String name = ctx.pathParam("name");
+        System.out.println("I'm in C");
         ctx.request().response().end(String.format("%s dep trai!", name));
     }
 

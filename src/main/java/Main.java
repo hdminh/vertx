@@ -13,7 +13,8 @@ public class Main extends AbstractVerticle {
 
     void helloVertx(RoutingContext ctx){
        vertx.eventBus().request("hello.vertx", "Minh", reply -> {
-           ctx.request().response().end((String) reply.result().body());
+                ctx.request().response().end((String) reply.result().body());
+
         });
     }
 
