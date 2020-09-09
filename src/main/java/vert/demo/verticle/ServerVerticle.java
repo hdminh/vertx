@@ -1,10 +1,13 @@
+package vert.demo.verticle;
+
 import io.vertx.core.AbstractVerticle;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 
 public class ServerVerticle extends AbstractVerticle {
+
     @Override
-    public void start(){
+    public void start() {
         Router router = Router.router(vertx);
         router.get("/api/hello/:name").handler(this::helloName);
         vertx.createHttpServer().requestHandler(router).listen(8080);
